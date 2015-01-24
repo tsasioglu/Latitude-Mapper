@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Latitude Map";
+    
+    if(ViewBag.Error == null) {
+        ViewBag.Error = " .";
+    }
+    else 
+    { 
+        ViewBag.Error = "Error: " + ViewBag.Error;
+    }
+}
+
+<div align="center">
+    <h1>Latitude Mapper</h1>
+    <p>Inspired by <a href="https://github.com/snowdonjames/LatitudeHistoryPlotter">LatitudeHistoryPlotter</a></p>
+    <div id="map-canvas" style="width:640px;height:640px;"></div>
+    <div class="error">@ViewBag.Error</div>
+    1. Centre and zoom the map to where you travel
+    <br />
+    2. Get your google location history at: <a href="https://www.google.com/settings/takeout/custom/location_history">Google Takeout</a>
+    <br />
+    3. Upload the .zip
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="file" />
+        <input type="hidden" name="leftLong" id="leftLong" value="before" />
+        <input type="hidden" name="rightLong" id="rightLong" value="before" />
+        <input type="hidden" name="topLat" id="topLat" value="before" />
+        <input type="hidden" name="bottomLat" id="bottomLat" value="before" />
+        <input type="hidden" name="center" id="center" value="before" />
+        <input type="hidden" name="centerLong" id="centerLong" value="before" />
+        <input type="hidden" name="centerLat" id="centerLat" value="before" />
+        <input type="hidden" name="zoom" id="zoom" value="before" />
+        <input type="submit" value="4. Map it" onclick="ExtractLatLong()" />
+    }
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<GOOGLE_API_KEY>&sensor=false"></script>
+ 
+    <script type="text/javascript">
+        function ExtractLatLong()
+        {
+            document.getElementById("leftLong").value   = map.getBounds().pa.j;
+            document.getElementById("rightLong").value  = map.getBounds().pa.k;
+            document.getElementById("topLat").value     = map.getBounds().xa.j;
+            document.getElementById("bottomLat").value  = map.getBounds().xa.k;
+            document.getElementById("centerLong").value = map.center.B;
+            document.getElementById("centerLat").value  = map.center.k;
+            document.getElementById("zoom").value       = map.zoom;
+        }
+    </script>
+
+    @Scripts.Render("~/bundles/basic")
+}
