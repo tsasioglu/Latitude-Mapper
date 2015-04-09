@@ -1,6 +1,8 @@
 # Latitude-Mapper
 
-Visualise Google latitude location history, as hosted at [LatitudeMapper](http://sasioglu.co.uk/LatitudeMapper)
+Visualise Google latitude location history.
+
+<img src="GoogleMapping/img/latitude_mapper.jpg" alt="alt text" width="700" ">
 
 ### Technologies
 
