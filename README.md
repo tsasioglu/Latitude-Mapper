@@ -2,7 +2,7 @@
 
 Visualise Google latitude location history.
 
-<img src="GoogleMapping/img/latitude_mapper.jpg" alt="alt text" width="700" ">
+<img src="GoogleMapping/img/latitude_mapper.jpg" alt="alt text" width="700">
 
 ### Technologies
 
